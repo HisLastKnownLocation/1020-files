@@ -8,18 +8,20 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Serve static files from project root
+app.use(express.static(path.join(__dirname)));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(
   session({
     secret: "supersecretkey",
     resave: false,
     saveUninitialized: true,
+    cookie: { sameSite: "lax" }, // Adjust for Render cookie policy
   })
 );
-
-// Serve static files
-app.use(express.static(path.join(__dirname)));
 
 const USERNAME = "admin";
 const PASSWORD = "password123";
@@ -32,21 +34,21 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+app.get("/", (req, res) => {
+  if (req.session.loggedIn) {
+    res.sendFile(path.join(__dirname, "index.html"));
+  } else {
+    res.sendFile(path.join(__dirname, "login.html"));
+  }
+});
+
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   if (username === USERNAME && password === PASSWORD) {
     req.session.loggedIn = true;
     res.redirect("/");
   } else {
-    res.send('Invalid credentials. <a href="/login.html">Try again</a>');
-  }
-});
-
-app.get("/", (req, res) => {
-  if (req.session.loggedIn) {
-    res.sendFile(path.join(__dirname, "index.html"));
-  } else {
-    res.sendFile(path.join(__dirname, "login.html"));
+    res.send('Invalid credentials. <a href="/">Try again</a>');
   }
 });
 
