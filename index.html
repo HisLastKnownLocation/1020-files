@@ -1,141 +1,125 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MondayMan</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      height: 100vh;
+      margin: 0;
+    }
+    aside {
+      background: #1e1e1e;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+    #topics li.active { background: #444; }
+    #chat {
+      flex-grow: 1;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      overflow-y: scroll;
+      margin-bottom: 1rem;
+    }
+    footer {
+      font-size: 0.8rem;
+      text-align: center;
+      color: #777;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;MondayMan&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: 250px 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>aside {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>background: #1e1e1e;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>main {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>#topics li.active { background: #444; }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>#chat {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>flex-grow: 1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>border: 1px solid #ccc;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>overflow-y: scroll;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>footer {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>color: #777;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="login-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Login to MondayMan&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;form id="login-form"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="login-username" placeholder="Username" required /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="password" id="login-password" placeholder="Password" required /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button type="submit"&gt;Login&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p id="login-error" style="color: red;"&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;aside style="display:none;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button&gt;New Chat Topic&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul id="topics"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li class="active"&gt;Current Topic&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/aside&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;main style="display:none;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section id="canva-docs"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Canva Docs Container&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Placeholder for AI-produced Canva docs or links.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section id="chat"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;MondayMan:&lt;/strong&gt; Welcome back to your pitiful quest for productivity.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;form id="chat-form"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="user-input" placeholder="Type your brilliance here..." required /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button type="submit"&gt;Send&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>All discussions are confidential. Ideas are copyrighted in the year first mentioned.</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>// LOGIN SCRIPT</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const loginSection = document.getElementById('login-section');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const chatForm = document.getElementById('chat-form');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const aside = document.querySelector('aside');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const main = document.querySelector('main');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('login-form').addEventListener('submit', async (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const username = document.getElementById('login-username').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const password = document.getElementById('login-password').value;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const res = await fetch('/login', {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">          </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">          </span>body: JSON.stringify({ username, password })</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const data = await res.json();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (data.success) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>loginSection.style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">          </span>aside.style.display = 'flex';</p>
-<p class="p1"><span class="Apple-converted-space">          </span>main.style.display = 'flex';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('login-error').innerText = 'Invalid login';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// CHAT SCRIPT</p>
-<p class="p1"><span class="Apple-converted-space">      </span>chatForm.addEventListener('submit', async (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const input = document.getElementById('user-input');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const userText = input.value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const chat = document.getElementById('chat');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>chat.innerHTML += `&lt;p&gt;&lt;strong&gt;You:&lt;/strong&gt; ${userText}&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>input.value = '';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const res = await fetch('/api/chat', {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">          </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">          </span>body: JSON.stringify({ prompt: userText })</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const data = await res.json();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>chat.innerHTML += `&lt;p&gt;&lt;strong&gt;MondayMan:&lt;/strong&gt; ${data.response}&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>chat.scrollTop = chat.scrollHeight;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <section id="login-section">
+    <h2>Login to MondayMan</h2>
+    <form id="login-form">
+      <input type="text" id="login-username" placeholder="Username" required />
+      <input type="password" id="login-password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p id="login-error" style="color: red;"></p>
+  </section>
+
+  <aside style="display:none;">
+    <button>New Chat Topic</button>
+    <ul id="topics">
+      <li class="active">Current Topic</li>
+    </ul>
+  </aside>
+
+  <main style="display:none;">
+    <section id="canva-docs">
+      <h3>Canva Docs Container</h3>
+      <p>Placeholder for AI-produced Canva docs or links.</p>
+    </section>
+    <section id="chat">
+      <p><strong>MondayMan:</strong> Welcome back to your pitiful quest for productivity.</p>
+    </section>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Type your brilliance here..." required />
+      <button type="submit">Send</button>
+    </form>
+    <footer>
+      All discussions are confidential. Ideas are copyrighted in the year first mentioned.
+    </footer>
+  </main>
+
+  <script>
+    // LOGIN SCRIPT
+    const loginSection = document.getElementById('login-section');
+    const chatForm = document.getElementById('chat-form');
+    const aside = document.querySelector('aside');
+    const main = document.querySelector('main');
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        loginSection.style.display = 'none';
+        aside.style.display = 'flex';
+        main.style.display = 'flex';
+      } else {
+        document.getElementById('login-error').innerText = 'Invalid login';
+      }
+    });
+
+    // CHAT SCRIPT
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = document.getElementById('user-input');
+      const userText = input.value;
+      const chat = document.getElementById('chat');
+      chat.innerHTML += `<p><strong>You:</strong> ${userText}</p>`;
+      input.value = '';
+
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: userText })
+      });
+      const data = await res.json();
+      chat.innerHTML += `<p><strong>MondayMan:</strong> ${data.response}</p>`;
+      chat.scrollTop = chat.scrollHeight;
+    });
+  </script>
 </body>
 </html>
