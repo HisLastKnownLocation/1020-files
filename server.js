@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const nodemailer = require("nodemailer");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -16,6 +17,9 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+// Serve static files
+app.use(express.static(path.join(__dirname)));
 
 const USERNAME = "admin";
 const PASSWORD = "password123";
@@ -34,15 +38,15 @@ app.post("/login", (req, res) => {
     req.session.loggedIn = true;
     res.redirect("/");
   } else {
-    res.send('Invalid credentials. <a href="/">Try again</a>');
+    res.send('Invalid credentials. <a href="/login.html">Try again</a>');
   }
 });
 
 app.get("/", (req, res) => {
   if (req.session.loggedIn) {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(path.join(__dirname, "index.html"));
   } else {
-    res.sendFile(__dirname + "/login.html");
+    res.sendFile(path.join(__dirname, "login.html"));
   }
 });
 
