@@ -7,23 +7,19 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "supersecretkey",
+    secret: "supersecretkey",
     resave: false,
     saveUninitialized: true,
-    cookie: { sameSite: "lax" },
   })
 );
 
-// Hardcoded login credentials for MVP
-const USERNAME = process.env.USERNAME || "admin";
-const PASSWORD = process.env.PASSWORD || "password123";
+const USERNAME = "admin";
+const PASSWORD = "password123";
 
-// Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -32,9 +28,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Routes
-
-// Login route
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   if (username === USERNAME && password === PASSWORD) {
@@ -45,7 +38,6 @@ app.post("/login", (req, res) => {
   }
 });
 
-// Root route: serve login or chat page
 app.get("/", (req, res) => {
   if (req.session.loggedIn) {
     res.sendFile(__dirname + "/index.html");
@@ -54,7 +46,6 @@ app.get("/", (req, res) => {
   }
 });
 
-// MondayMan chat route
 app.post("/api/chat", async (req, res) => {
   const fetch = (await import("node-fetch")).default;
   const prompt = req.body.prompt;
@@ -84,11 +75,10 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-// Test email route
 app.get("/test-email", async (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER, // send to yourself to test
+    to: process.env.EMAIL_USER,
     subject: "MondayMan Email Test",
     text: "This is a test email from MondayMan server.",
   };
@@ -102,7 +92,6 @@ app.get("/test-email", async (req, res) => {
   }
 });
 
-// Start server
 app.listen(PORT, () =>
   console.log(`MondayMan running with login and email on port ${PORT}`)
 );
