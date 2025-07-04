@@ -95,4 +95,3 @@ app.get("/test-email", async (req, res) => {
 app.listen(PORT, () =>
   console.log(`MondayMan running with login and email on port ${PORT}`)
 );
-
